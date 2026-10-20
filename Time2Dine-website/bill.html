@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation Bill - Time2Dine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="bill.css">
+</head>
+<body>
+    <div class="bill-page">
+        <div class="bill-modal" id="billModal">
+            <div class="bill-header">
+                <img src="img/logo.png" alt="Time2Dine Logo" class="bill-logo">
+                <div class="brand">Time<span>2</span>Dine</div>
+            </div>
+            <h1 class="bill-title">Reservation Summary</h1>
+
+            <div class="bill-details">
+                <div class="bill-row"><span>Reservation Name</span><strong id="resName"></strong></div>
+                <div class="bill-row"><span>Restaurant</span><strong id="restaurant"></strong></div>
+                <div class="bill-row"><span>Date</span><strong id="date"></strong></div>
+                <div class="bill-row"><span>Time</span><strong id="time"></strong></div>
+                <div class="bill-row"><span>Table Size</span><strong id="tableSize"></strong></div>
+                <div class="bill-row"><span>Seating</span><strong id="seating"></strong></div>
+                <div class="bill-row"><span>Reservation ID</span><strong id="resId"></strong></div>
+            </div>
+
+            <!-- Food Order Section -->
+            <div id="foodOrderSection" style="display: none;">
+                <h2 class="bill-title">Food Order</h2>
+                <div class="bill-details" id="foodOrderDetails">
+                    <!-- Individual food items will be populated here -->
+                </div>
+                <div class="bill-row food-subtotal"><span>Food Subtotal</span><strong id="foodSubtotal"></strong></div>
+                <div class="bill-row grand-total"><span>Grand Total</span><strong id="grandTotal"></strong></div>
+            </div>
+
+            <div class="bill-actions">
+                <button class="back-btn" id="backBtn">Back</button>
+                <button class="print-btn" id="printBtn">Print</button>
+            </div>
+            <p class="bill-note">Show this at the entrance. A copy has been prepared for print.</p>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            function getParam(name) {
+                const params = new URLSearchParams(window.location.search);
+                return params.get(name) || '';
+            }
+            function formatDate(iso) {
+                if (!iso) return '';
+                try {
+                    const d = new Date(iso);
+                    if (Number.isNaN(d.getTime())) return iso;
+                    return d.toLocaleDateString();
+                } catch { return iso; }
+            }
+            function formatTime(t) {
+                if (!t) return '';
+                try {
+                    const [h, m] = t.split(':').map(Number);
+                    const d = new Date();
+                    d.setHours(h, m || 0, 0);
+                    return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                } catch { return t; }
+            }
+            function randomId() {
+                if (window.crypto && window.crypto.randomUUID) {
+                    return 'T2D-' + crypto.randomUUID();
+                }
+                // Fallback: UUID v4 polyfill using getRandomValues
+                if (window.crypto && window.crypto.getRandomValues) {
+                    const bytes = new Uint8Array(16);
+                    crypto.getRandomValues(bytes);
+                    bytes[6] = (bytes[6] & 0x0f) | 0x40; // version 4
+                    bytes[8] = (bytes[8] & 0x3f) | 0x80; // variant
+                    const hex = [...bytes].map(b => b.toString(16).padStart(2, '0'));
+                    const uuid = `${hex[0]}${hex[1]}${hex[2]}${hex[3]}-${hex[4]}${hex[5]}-${hex[6]}${hex[7]}-${hex[8]}${hex[9]}-${hex[10]}${hex[11]}${hex[12]}${hex[13]}${hex[14]}${hex[15]}`;
+                    return 'T2D-' + uuid;
+                }
+                // Last resort
+                return 'T2D-' + (Date.now().toString(36) + Math.random().toString(36).slice(2)).toUpperCase();
+            }
+
+            const restaurant = getParam('restaurant') || 'Restaurant';
+            const name = getParam('name');
+            const date = getParam('date');
+            const time = getParam('time');
+            const tableSize = getParam('table');
+            const seating = getParam('seating');
+            const resId = getParam('rid') || randomId();
+
+            document.getElementById('resName').textContent = name || '';
+            document.getElementById('restaurant').textContent = restaurant;
+            document.getElementById('date').textContent = formatDate(date);
+            document.getElementById('time').textContent = formatTime(time);
+            document.getElementById('tableSize').textContent = tableSize || '';
+            document.getElementById('seating').textContent = seating || '';
+            document.getElementById('resId').textContent = resId;
+
+            // Handle food order data
+            const cartData = sessionStorage.getItem('cartData');
+            if (cartData) {
+                const cart = JSON.parse(cartData);
+                if (cart.length > 0) {
+                    document.getElementById('foodOrderSection').style.display = 'block';
+                    
+                    const foodOrderDetails = document.getElementById('foodOrderDetails');
+                    foodOrderDetails.innerHTML = cart.map(item => `
+                        <div class="food-item-row">
+                            <div>
+                                <span class="food-item-name">${item.name}</span>
+                                <span class="food-item-quantity">(Qty: ${item.quantity})</span>
+                            </div>
+                            <div class="food-item-price">Tk ${(item.price * item.quantity).toLocaleString()}</div>
+                        </div>
+                    `).join('');
+                    
+                    const foodSubtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                    document.getElementById('foodSubtotal').textContent = `Tk ${foodSubtotal.toLocaleString()}`;
+                    document.getElementById('grandTotal').textContent = `Tk ${foodSubtotal.toLocaleString()}`;
+                    
+                    // Clear cart data after displaying
+                    sessionStorage.removeItem('cartData');
+                }
+            }
+
+            document.getElementById('printBtn').addEventListener('click', () => window.print());
+            document.getElementById('backBtn').addEventListener('click', () => window.history.back());
+        })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,439 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Shrikhand&family=Montserrat:wght@400;500;600;700&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f7fafc;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+header {
+    width: 100%;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+}
+
+/* Navbar Container */
+.navbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: clamp(0.75rem, 1.5vw, 1.25rem) clamp(1rem, 3vw, 3rem);
+    position: relative;
+}
+
+/* Logo */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.logo img {
+    height: 40px;
+}
+
+/* Navigation Links */
+.nav-link {
+    text-decoration: none;
+    color: #000000;
+    transition: color 0.3s ease;
+}
+
+.nav-link.active {
+    color: #FF0000;
+}
+
+.dropdown-content .nav-link {
+    color: #000000;
+}
+
+.dropdown-content .nav-link.active {
+    color: #FF0000;
+}
+
+/* Main Content Layout */
+.main-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    flex: 1;
+}
+
+.content-wrapper {
+    display: flex;
+    align-items: stretch;
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    background: #fff5e6;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* Left Section with Restaurant Image */
+.left-section {
+    flex: 1 1 50%;
+    max-width: 50%;
+    min-height: clamp(520px, 80vh, 900px);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.restaurant-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+/* Right Section with Form */
+.right-section {
+    flex: 1 1 50%;
+    max-width: 50%;
+    display: flex;
+    align-items: center;
+    padding: clamp(1rem, 2vw, 2.5rem);
+    background-color: #fff5e6;
+}
+
+.brand {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #d9482c;
+}
+
+.brand span {
+    color: #f7a92b;
+}
+
+/* Nav Links */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.nav-links li {
+    position: relative;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #000;
+    font-size: 1rem;
+    font-weight: 400;
+    transition: color 0.3s ease;
+}
+
+.nav-links a.active {
+    color: #FF0000;
+}
+
+/* Dropdown */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    border-radius: 6px;
+    min-width: 150px;
+    z-index: 100;
+}
+
+.dropdown-content li {
+    display: block;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 0.7rem 1rem;
+    color: #333;
+    text-decoration: none;
+}
+
+.dropdown-content a:hover {
+    background-color: #f7a92b;
+    color: #fff;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Sign In Button */
+.signin-btn {
+    border-radius: 20px;
+    padding: 0.4rem 1rem;
+    text-decoration: none;
+    background-color: #f7a92b;
+    color: white;
+    font-weight: 500;
+}
+
+/* Main Content */
+.main-content {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    padding: 2rem;
+    flex: 1;
+}
+
+.content-wrapper {
+    display: flex;
+    align-items: stretch;
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    background: #fff5e6;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Left Section */
+.left-section {
+    width: auto;
+    background: transparent;
+}
+
+.left-section img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Right Section */
+.right-section {
+    flex: 1 1 50%;
+    max-width: 50%;
+    display: flex;
+    align-items: center;
+    padding: clamp(1rem, 2vw, 2.5rem);
+}
+
+.form-container {
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+}
+
+/* Responsive: stack on smaller screens */
+@media (max-width: 1024px) {
+    .content-wrapper {
+        flex-direction: column;
+    }
+    .left-section, .right-section {
+        max-width: 100%;
+        flex-basis: 100%;
+    }
+    .left-section {
+        min-height: 300px;
+    }
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 2rem;
+}
+
+/* Form Elements */
+.input-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.date-input, .time-input {
+    position: relative;
+}
+
+.input-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+    filter: grayscale(0%); /* Ensures emojis keep their color */
+    -webkit-filter: grayscale(0%);
+}
+
+/* Specific styles for date icon */
+.date-input .input-icon {
+    color: #2563eb; /* Blue color for calendar icon */
+}
+
+/* Specific styles for time icon */
+.time-input .input-icon {
+    color: #2563eb; /* Blue color for clock icon */
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+/* Sections */
+.section {
+    margin-bottom: 2rem;
+}
+
+.section-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.table-options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.seating-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.preorder-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.option-btn {
+    padding: 0.75rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background: white;
+    color: #333;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.option-btn:hover, .option-btn.active {
+    background: #f8f8f8;
+    border-color: #d9482c;
+    color: #d9482c;
+}
+
+.option-btn:disabled {
+    background: #f5f5f5;
+    color: #999;
+    border-color: #ddd;
+    cursor: not-allowed;
+    filter: blur(1px);
+    opacity: 0.4;
+}
+
+/* Submit Button */
+.submit-btn {
+    width: 100%;
+    padding: 1rem;
+    background: #d9482c;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.submit-btn:hover {
+    background: #c13d24;
+}
+
+/* Footer */
+footer {
+    width: 100%;
+    background: #fff;
+    padding: 2rem;
+    text-align: center;
+    border-top: 1px solid #ddd;
+}
+
+.footer-info {
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.footer-info a {
+    color: #333;
+    text-decoration: none;
+}
+
+.footer-links {
+    margin: 1rem 0;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #333;
+    font-size: 0.9rem;
+}
+
+.copy {
+    font-size: 0.85rem;
+    color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.copyright-spacer::before {
+    content: '';
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    background-image: url('symbol.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 0 4px;
+}

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lueur Restaurant - Time2Dine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="reservation.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <!-- Left: Logo -->
+            <div class="logo">
+                <img src="img/logo.png" alt="Time2Dine Logo">
+                <span class="brand">Time<span>2</span>Dine</span>
+            </div>
+
+            <!-- Center: Nav Links -->
+            <ul class="nav-links">
+                <li><a href="home.html" class="nav-link">Home</a></li>
+                <!-- Dropdown -->
+                <li class="dropdown">
+                    <a href="#" class="nav-link">Menu ▾</a>
+                    <ul class="dropdown-content">
+                        <li><a href="#" class="nav-link">Bengali</a></li>
+                        <li><a href="chinese_reservation.html" class="nav-link">Chinese</a></li>
+                        <li><a href="#" class="nav-link">Fast Food</a></li>
+                        <li><a href="lueur.html" class="nav-link">Cafe</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" class="nav-link">About</a></li>
+                <li><a href="#" class="nav-link">Contact</a></li>
+                
+                <!-- Dropdown -->
+      <li class="dropdown">
+        <a href="#">Reservations ▾</a>
+        <ul class="dropdown-content">
+          <li><a href="bengali_reservation.html">Bengali</a></li>
+          <li><a href="chinese_reservation.html">Chinese</a></li>
+          <li><a href="fastfood_reservation.html">Fast Food</a></li>
+          <li><a href="brew_reservation.html">Brew</a></li>
+          <li><a href="chillox_reservation.html">Chillox</a></li>
+          <li><a href="kacchi_reservation.html">Kacchi</a></li>
+          <li><a href="khanas_reservation.html">Khanas</a></li>
+          <li><a href="lueur_reservation.html">Lueur</a></li>
+          <li><a href="pizzahut_reservation.html">Pizza Hut</a></li>
+        </ul>
+      </li>
+            </ul>
+
+            <!-- Right: Login -->
+            <a href="signin.html" class="signin-btn">Sign In</a>
+        </nav>
+    </header>
+
+    <div class="main-content">
+        <div class="content-wrapper">
+            <!-- Left Section: Restaurant Image -->
+            <div class="left-section">
+                <img src="img/lueur.jpg" alt="Lueur Restaurant Interior" width="700" height="700" class="restaurant-image">
+            </div>
+
+            <!-- Right Section: Reservation Form -->
+            <div class="right-section">
+                <div class="form-container">
+                    <h1 class="title">Lueur Restaurant Reservation</h1>
+
+                    <!-- Reservation Name + Party Size Side-by-Side -->
+                    <div class="section">
+                        <div class="grid md:grid-cols-2 gap-4 items-start">
+                            <div>
+                                <h3 class="section-title">Reservation Name</h3>
+                                <input type="text" id="reservation-name" class="form-input" placeholder="Enter your name" />
+                            </div>
+                            <div>
+                                <h3 class="section-title">Party Size</h3>
+                                <input type="number" id="party-size" class="form-input" placeholder="1" min="1" max="20" value="2" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Date and Time Section -->
+                    <div class="input-group">
+                        <div class="date-input">
+                            <span class="input-icon">📅</span>
+                            <input type="date" class="form-input" placeholder="mm/dd/yyyy">
+                        </div>
+                        <div class="time-input">
+                            <span class="input-icon">⏰</span>
+                            <input type="time" class="form-input">
+                        </div>
+                    </div>
+
+                    <!-- Table Size Section -->
+                    <div class="section">
+                        <h3 class="section-title">Select Table Size</h3>
+                                <div class="table-options">
+                                    <button class="option-btn">2 Persons</button>
+                                    <button class="option-btn">4 Persons</button>
+                                    <button class="option-btn">6 Persons</button>
+                                </div>
+                    </div>
+
+                    <!-- Seating Preference -->
+                    <div class="section">
+                        <h3 class="section-title">Seating Preference</h3>
+                        <div class="seating-options">
+                            <button class="option-btn">Window View</button>
+                            <button class="option-btn">Wall View</button>
+                            <button class="option-btn">Middle Table</button>
+                            <button class="option-btn">Surprise!!!</button>
+                        </div>
+                    </div>
+
+                    <!-- Pre-order Option -->
+                    <div class="section">
+                        <h3 class="section-title">Want to Pre-order?</h3>
+                        <div class="preorder-options">
+                            <button class="option-btn">Yes</button>
+                            <button class="option-btn">No</button>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button class="submit-btn">
+                        Confirm Reservation
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <a href="#">ABOUT US</a>
+            <a href="#">CONTACT US</a>
+            <a href="#">HELP</a>
+            <a href="#">PRIVACY POLICY</a>
+        </div>
+        <div class="footer-info">
+            <a href="#">📍 Dhaka, Bangladesh</a>
+            <a href="#">📩 contactus@time2dine.com</a>
+        </div>
+        <p class="copy">Copyright © 2025 <span class="copyright-spacer"></span> Time2Dine.</p>
+    </footer>
+
+    <script src="reservation.js"></script>
+</body>
+</html>

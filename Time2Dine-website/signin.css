@@ -1,0 +1,110 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Arial", sans-serif;
+}
+
+
+
+.container {
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Left Panel */
+.left-panel {
+    width: 550px;
+    height: 500px;
+  background-color: #d9482c;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.branding {
+  text-align: center;
+  
+}
+.logo img {
+  width: 300px;
+  margin-bottom: 1rem;
+}
+
+/* Right Panel */
+.right-panel {
+    width: 550px;
+    height: 500px;
+  background: #fff;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.back {
+  text-decoration: none;
+  color: #333;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+.right-panel h2 {
+  color: #d9482c;
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.login-form .input-group {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 0.9rem;
+  border-radius: 25px;
+  border: 1px solid #ddd;
+  font-size: 0.9rem;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #aaa;
+}
+.signup-text {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.signup-text a {
+  color: red;
+  font-size: 0.8rem;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.signin-btn {
+  background: #f7a92b;
+  border: none;
+  color: white;
+  padding: 0.8rem;
+  border-radius: 25px;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 20%;
+}
+.signin-btn a{
+  color: white;
+   text-decoration: none;
+}
+ 

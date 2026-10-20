@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Reservation Page - Time2Dine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="reservation.css">
+    <style>
+        .form-section {
+            background: #fff;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #d9482c;
+            padding-bottom: 0.5rem;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+        .form-input, .form-textarea, .form-select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: #333;
+            transition: border-color 0.3s ease;
+        }
+        .form-input:focus, .form-textarea:focus, .form-select:focus {
+            outline: none;
+            border-color: #d9482c;
+            box-shadow: 0 0 0 3px rgba(217, 72, 44, 0.1);
+        }
+        .form-textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .checkbox-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #d9482c;
+        }
+        .checkbox-item label {
+            font-weight: 500;
+            color: #333;
+            cursor: pointer;
+        }
+        .add-item-btn {
+            background: #d9482c;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background 0.3s ease;
+        }
+        .add-item-btn:hover {
+            background: #c13d24;
+        }
+        .remove-item-btn {
+            background: #ff4444;
+            color: white;
+            border: none;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            margin-left: 0.5rem;
+        }
+        .remove-item-btn:hover {
+            background: #cc3333;
+        }
+        .dynamic-list {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 1rem;
+            background: #f9f9f9;
+        }
+        .dynamic-item {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .dynamic-item:last-child {
+            border-bottom: none;
+        }
+        .dynamic-item input {
+            flex: 1;
+            margin-right: 0.5rem;
+        }
+        .submit-section {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+        }
+        .generate-btn {
+            background: #d9482c;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .generate-btn:hover {
+            background: #c13d24;
+        }
+        .preview-section {
+            background: #fff5e6;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        .preview-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #d9482c;
+            margin-bottom: 1rem;
+        }
+        .preview-content {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 2px dashed #d9482c;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="img/logo.png" alt="Time2Dine Logo">
+                <span class="brand">Time<span>2</span>Dine</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="home.html" class="nav-link">Home</a></li>
+                <li><a href="new_reservation_form.html" class="nav-link active">Create Reservation</a></li>
+                <li><a href="signin.html" class="nav-link">Sign In</a></li>
+            </ul>
+            <a href="signin.html" class="signin-btn">Sign In</a>
+        </nav>
+    </header>
+
+    <div class="main-content">
+        <div class="content-wrapper">
+            <div class="form-container">
+                <h1 class="title">Create New Reservation Page</h1>
+                <p style="color: #666; margin-bottom: 2rem;">Fill out the form below to generate a custom reservation page for your restaurant.</p>
+
+                <form id="reservationForm">
+                    <!-- Restaurant Basic Information -->
+                    <div class="form-section">
+                        <h2 class="section-title">Restaurant Information</h2>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Restaurant Name *</label>
+                            <input type="text" class="form-input" id="restaurantName" placeholder="e.g., Delicious Bites" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Restaurant Description</label>
+                            <textarea class="form-textarea" id="restaurantDescription" placeholder="Brief description of your restaurant..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Restaurant Image URL *</label>
+                            <input type="url" class="form-input" id="restaurantImage" placeholder="https://example.com/restaurant-image.jpg" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Restaurant Category</label>
+                            <select class="form-select" id="restaurantCategory">
+                                <option value="Bengali">Bengali</option>
+                                <option value="Chinese">Chinese</option>
+                                <option value="Fast Food">Fast Food</option>
+                                <option value="Cafe">Cafe</option>
+                                <option value="Italian">Italian</option>
+                                <option value="Indian">Indian</option>
+                                <option value="Thai">Thai</option>
+                                <option value="Mexican">Mexican</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Capacity Information -->
+                    <div class="form-section">
+                        <h2 class="section-title">Capacity & Tables</h2>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Total Restaurant Capacity *</label>
+                            <input type="number" class="form-input" id="totalCapacity" placeholder="e.g., 100" min="1" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Available Table Sizes *</label>
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="table2" value="2">
+                                    <label for="table2">2 Persons</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="table3" value="3">
+                                    <label for="table3">3 Persons</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="table4" value="4">
+                                    <label for="table4">4 Persons</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="table5" value="5">
+                                    <label for="table5">5 Persons</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="table6" value="6">
+                                    <label for="table6">6 Persons</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="table8" value="8">
+                                    <label for="table8">8 Persons</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="table10" value="10">
+                                    <label for="table10">10 Persons</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Seating Preferences -->
+                    <div class="form-section">
+                        <h2 class="section-title">Seating Preferences</h2>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Default Seating Options</label>
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="windowView" value="Window View" checked>
+                                    <label for="windowView">Window View</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="wallView" value="Wall View" checked>
+                                    <label for="wallView">Wall View</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="middleTable" value="Middle Table" checked>
+                                    <label for="middleTable">Middle Table</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="surprise" value="Surprise!!!" checked>
+                                    <label for="surprise">Surprise!!!</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Custom Seating Options</label>
+                            <div class="dynamic-list" id="customSeatingList">
+                                <div class="dynamic-item">
+                                    <input type="text" placeholder="e.g., Outdoor Seating" class="form-input">
+                                    <button type="button" class="remove-item-btn" onclick="removeSeatingItem(this)">Remove</button>
+                                </div>
+                            </div>
+                            <button type="button" class="add-item-btn" onclick="addSeatingItem()">Add Custom Seating</button>
+                        </div>
+                    </div>
+
+                    <!-- Operating Hours -->
+                    <div class="form-section">
+                        <h2 class="section-title">Operating Hours</h2>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Opening Time *</label>
+                            <input type="time" class="form-input" id="openingTime" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Closing Time *</label>
+                            <input type="time" class="form-input" id="closingTime" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Reservation Time Slots (minutes)</label>
+                            <select class="form-select" id="timeSlots">
+                                <option value="15">15 minutes</option>
+                                <option value="30" selected>30 minutes</option>
+                                <option value="45">45 minutes</option>
+                                <option value="60">60 minutes</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Additional Settings -->
+                    <div class="form-section">
+                        <h2 class="section-title">Additional Settings</h2>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Maximum Party Size</label>
+                            <input type="number" class="form-input" id="maxPartySize" placeholder="e.g., 20" min="1" value="20">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Advance Booking Limit (days)</label>
+                            <input type="number" class="form-input" id="advanceBooking" placeholder="e.g., 30" min="1" value="30">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Minimum Booking Notice (hours)</label>
+                            <input type="number" class="form-input" id="minBookingNotice" placeholder="e.g., 2" min="0" value="2">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Special Instructions</label>
+                            <textarea class="form-textarea" id="specialInstructions" placeholder="Any special instructions for customers..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Submit Section -->
+                    <div class="submit-section">
+                        <button type="submit" class="generate-btn">Generate Reservation Page</button>
+                    </div>
+                </form>
+
+                <!-- Preview Section -->
+                <div class="preview-section" id="previewSection" style="display: none;">
+                    <h3 class="preview-title">Generated Reservation Page Preview</h3>
+                    <div class="preview-content" id="previewContent">
+                        <!-- Preview content will be generated here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <a href="#">ABOUT US</a>
+            <a href="#">CONTACT US</a>
+            <a href="#">HELP</a>
+            <a href="#">PRIVACY POLICY</a>
+        </div>
+        <div class="footer-info">
+            <a href="#">📍 Dhaka, Bangladesh</a>
+            <a href="#">📩 contactus@time2dine.com</a>
+        </div>
+        <p class="copy">Copyright © 2025 <span class="copyright-spacer"></span> Time2Dine.</p>
+    </footer>
+
+    <script>
+        // Dynamic seating options management
+        function addSeatingItem() {
+            const list = document.getElementById('customSeatingList');
+            const newItem = document.createElement('div');
+            newItem.className = 'dynamic-item';
+            newItem.innerHTML = `
+                <input type="text" placeholder="e.g., VIP Section" class="form-input">
+                <button type="button" class="remove-item-btn" onclick="removeSeatingItem(this)">Remove</button>
+            `;
+            list.appendChild(newItem);
+        }
+
+        function removeSeatingItem(button) {
+            button.parentElement.remove();
+        }
+
+        // Form submission handler
+        document.getElementById('reservationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Collect form data
+            const formData = {
+                restaurantName: document.getElementById('restaurantName').value,
+                restaurantDescription: document.getElementById('restaurantDescription').value,
+                restaurantImage: document.getElementById('restaurantImage').value,
+                restaurantCategory: document.getElementById('restaurantCategory').value,
+                totalCapacity: document.getElementById('totalCapacity').value,
+                tableSizes: getSelectedTableSizes(),
+                seatingOptions: getSeatingOptions(),
+                openingTime: document.getElementById('openingTime').value,
+                closingTime: document.getElementById('closingTime').value,
+                timeSlots: document.getElementById('timeSlots').value,
+                maxPartySize: document.getElementById('maxPartySize').value,
+                advanceBooking: document.getElementById('advanceBooking').value,
+                minBookingNotice: document.getElementById('minBookingNotice').value,
+                specialInstructions: document.getElementById('specialInstructions').value
+            };
+
+            // Generate preview
+            generatePreview(formData);
+            
+            // Show preview section
+            document.getElementById('previewSection').style.display = 'block';
+            
+            // Scroll to preview
+            document.getElementById('previewSection').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        function getSelectedTableSizes() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"][id^="table"]:checked');
+            return Array.from(checkboxes).map(cb => cb.value);
+        }
+
+        function getSeatingOptions() {
+            const defaultOptions = [];
+            const defaultCheckboxes = document.querySelectorAll('input[type="checkbox"][id$="View"], input[type="checkbox"][id$="Table"], input[type="checkbox"][id="surprise"]:checked');
+            defaultCheckboxes.forEach(cb => defaultOptions.push(cb.value));
+
+            const customOptions = [];
+            const customInputs = document.querySelectorAll('#customSeatingList input[type="text"]');
+            customInputs.forEach(input => {
+                if (input.value.trim()) {
+                    customOptions.push(input.value.trim());
+                }
+            });
+
+            return [...defaultOptions, ...customOptions];
+        }
+
+        function generatePreview(data) {
+            const previewContent = document.getElementById('previewContent');
+            
+            previewContent.innerHTML = `
+                <h4 style="color: #d9482c; margin-bottom: 1rem;">Restaurant: ${data.restaurantName}</h4>
+                <p><strong>Category:</strong> ${data.restaurantCategory}</p>
+                <p><strong>Description:</strong> ${data.restaurantDescription || 'No description provided'}</p>
+                <p><strong>Total Capacity:</strong> ${data.totalCapacity} people</p>
+                <p><strong>Table Sizes:</strong> ${data.tableSizes.join(', ')} persons</p>
+                <p><strong>Seating Options:</strong> ${data.seatingOptions.join(', ')}</p>
+                <p><strong>Operating Hours:</strong> ${data.openingTime} - ${data.closingTime}</p>
+                <p><strong>Time Slots:</strong> Every ${data.timeSlots} minutes</p>
+                <p><strong>Max Party Size:</strong> ${data.maxPartySize} people</p>
+                <p><strong>Advance Booking:</strong> Up to ${data.advanceBooking} days</p>
+                <p><strong>Min Booking Notice:</strong> ${data.minBookingNotice} hours</p>
+                ${data.specialInstructions ? `<p><strong>Special Instructions:</strong> ${data.specialInstructions}</p>` : ''}
+                
+                <div style="margin-top: 1.5rem; padding: 1rem; background: #f0f8ff; border-radius: 8px;">
+                    <h5 style="color: #2563eb; margin-bottom: 0.5rem;">Generated Files:</h5>
+                    <p>• ${data.restaurantName.toLowerCase().replace(/\s+/g, '_')}_reservation.html</p>
+                    <p>• Uses existing reservation.css and reservation.js</p>
+                    <p>• Integrated with cart system and bill page</p>
+                </div>
+                
+                <div style="margin-top: 1rem;">
+                    <button onclick="downloadReservationPage()" style="background: #d9482c; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 6px; cursor: pointer;">
+                        Download Reservation Page
+                    </button>
+                </div>
+            `;
+        }
+
+        function downloadReservationPage() {
+            // This would generate and download the actual HTML file
+            alert('Reservation page generation feature will be implemented in the next step!');
+        }
+    </script>
+</body>
+</html>

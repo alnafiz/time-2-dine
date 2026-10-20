@@ -1,0 +1,80 @@
+/* Bill Page Styles */
+* { box-sizing: border-box; }
+body { margin: 0; font-family: 'Inter', Arial, sans-serif; background: #f7fafc; }
+
+.bill-page { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px; }
+.bill-modal { width: 100%; max-width: 540px; background: #fff; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,.12); padding: 24px; }
+
+.bill-header { display: flex; align-items: center; gap: 12px; }
+.bill-logo { height: 36px; }
+.brand { font-weight: 700; color: #d9482c; font-size: 18px; }
+.brand span { color: #f7a92b; }
+
+.bill-title { margin: 12px 0 20px; font-size: 22px; font-weight: 700; color: #111827; }
+
+.bill-details { display: grid; gap: 10px; margin-bottom: 20px; }
+.bill-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; border: 1px solid #f0f0f0; border-radius: 8px; background: #fafafa; }
+.bill-row span { color: #6b7280; font-size: 14px; }
+.bill-row strong { color: #111827; font-size: 15px; }
+
+.bill-actions { display: flex; justify-content: flex-end; gap: 10px; }
+.back-btn { background: #e5e7eb; color: #111827; border: none; border-radius: 8px; padding: 10px 14px; cursor: pointer; }
+.print-btn { background: #f7a92b; color: #fff; border: none; border-radius: 8px; padding: 10px 14px; cursor: pointer; }
+.back-btn:hover { background: #d1d5db; }
+.print-btn:hover { background: #f59e0b; }
+
+.bill-note { margin-top: 10px; font-size: 12px; color: #6b7280; text-align: right; }
+
+/* Food Order Section Styles */
+.food-item-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    border: 1px solid #f0f0f0;
+    border-radius: 6px;
+    background: #fafafa;
+    margin-bottom: 8px;
+}
+
+.food-item-name {
+    font-weight: 500;
+    color: #111827;
+    font-size: 14px;
+}
+
+.food-item-quantity {
+    color: #6b7280;
+    font-size: 12px;
+    margin-left: 8px;
+}
+
+.food-item-price {
+    color: #d9482c;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.food-subtotal {
+    border-top: 2px solid #d9482c;
+    background: #fff5e6;
+    font-weight: 700;
+    color: #d9482c;
+}
+
+.grand-total {
+    border-top: 3px solid #d9482c;
+    background: #fff5e6;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #d9482c;
+    margin-top: 15px;
+}
+
+/* Print Styles */
+@media print {
+  body { background: #fff; }
+  .bill-page { padding: 0; }
+  .bill-modal { box-shadow: none; border: 1px solid #e5e7eb; }
+  .back-btn { display: none !important; }
+}
